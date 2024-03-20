@@ -71,7 +71,7 @@ public class Company {
      * @return true If the registration succeeds, false otherwise.
      */
     public boolean registerClient(User client) {
-        return true;         // dummy implementation
+        return clients.add(client);         // dummy implementation
     }
 
     /**
@@ -81,7 +81,7 @@ public class Company {
      * @return true If the registration succeeds, false otherwise.
      */
     public boolean registerSeller(User seller) {
-        return true;         // dummy implementation
+        return sellers.add(seller);         // dummy implementation
     }
 
     /**
@@ -91,7 +91,7 @@ public class Company {
      * @return true If the registration succeeds, false otherwise.
      */
     public boolean registerProperty(Property property) {
-        return true;         // dummy implementation
+        return properties.add(property);         // dummy implementation
     }
 
     /**
@@ -101,7 +101,7 @@ public class Company {
      * @return true If the registration succeeds, false otherwise.
      */
     public boolean registerSell(Sell sell) {
-        return true;         // dummy implementation
+        return sells.add(sell);         // dummy implementation
     }
 
     /**

@@ -35,4 +35,31 @@ public class CompanyTest
         seller1 = new User("Fernando Fernandes", "966777101", "fefe@remax.pt");
         seller2 = new User("Rodrigo Rodrigues", "966777152", " roro@remax.pt");
     }
+    
+    @Test
+    public void testRegisterClient() {
+        assertTrue(company1.registerClient(client1));
+        assertEquals(1, company1.getClients().size());
+        assertTrue(company1.getClients().contains(client1));
+    }
+    
+    @Test
+    public void testRegisterClients() {
+        assertTrue(company1.registerClient(client1));
+        assertTrue(company1.registerClient(client2));
+        assertEquals(2, company1.getClients().size());
+        assertTrue(company1.getClients().contains(client1));
+        assertTrue(company1.getClients().contains(client2));
+    }
+    
+    @Test
+    public void testRegisterClientDuplicate() {
+        company1.registerClient(client1);
+        company1.registerClient(client1);
+    }
+    
+    @Test
+    public void testRegisterClientNull() {
+        company1.registerClient(null);
+    }
 }
