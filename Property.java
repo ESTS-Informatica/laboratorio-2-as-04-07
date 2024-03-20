@@ -66,6 +66,6 @@ public class Property {
 
     @Override
     public String toString() {
-        return "Descrição: " + this.model + "\n" + "Preço: " + this.price;
+        return "Descrição: " + this.model + "\n" + "Preço: " + this.price + " Euros";
     }
 }
