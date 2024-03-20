@@ -26,6 +26,8 @@ public class Company {
     public Company() {
         this.clients = new ArrayList<>();
         this.sellers = new ArrayList<>();
+        this.properties = new ArrayList<>();
+        this.sells = new ArrayList<>();
     }
 
     /**
@@ -34,7 +36,7 @@ public class Company {
      * @return This company clients.
      */
     public List<User> getClients() {
-        return clients;         // dummy implementation
+        return clients;       
     }
 
     /**
@@ -43,7 +45,7 @@ public class Company {
      * @return This company sellers.
      */
     public List<User> getSellers() {
-        return sellers;         // dummy implementation
+        return sellers;        
     }
 
     /**
@@ -52,7 +54,7 @@ public class Company {
      * @return This company's properties.
      */
     public List<Property> getProperties() {
-        return properties;         // dummy implementation
+        return properties;        
     }
 
     /**
@@ -61,7 +63,7 @@ public class Company {
      * @return This company sells.
      */
     public List<Sell> getSells() {
-        return sells;         // dummy implementation
+        return sells;         
     }
 
     /**
@@ -71,7 +73,7 @@ public class Company {
      * @return true If the registration succeeds, false otherwise.
      */
     public boolean registerClient(User client) {
-        return clients.add(client);         // dummy implementation
+        return clients.add(client);         
     }
 
     /**
@@ -81,7 +83,7 @@ public class Company {
      * @return true If the registration succeeds, false otherwise.
      */
     public boolean registerSeller(User seller) {
-        return sellers.add(seller);         // dummy implementation
+        return sellers.add(seller);         
     }
 
     /**
@@ -91,7 +93,7 @@ public class Company {
      * @return true If the registration succeeds, false otherwise.
      */
     public boolean registerProperty(Property property) {
-        return properties.add(property);         // dummy implementation
+        return properties.add(property);         
     }
 
     /**
@@ -101,7 +103,7 @@ public class Company {
      * @return true If the registration succeeds, false otherwise.
      */
     public boolean registerSell(Sell sell) {
-        return sells.add(sell);         // dummy implementation
+        return sells.add(sell);        
     }
 
     /**
@@ -113,7 +115,8 @@ public class Company {
      * @return true If the request succeeds, false otherwise.
      */
     public boolean createSell(User client, User seller, Property property) {
-        return true;         // dummy implementation
+        Sell sell = new Sell(client, seller, property);
+        return registerSell(sell);    
     }
 
     /**
@@ -123,7 +126,13 @@ public class Company {
      * @return The total number of sells in the year.
      */
     public int calculateSellsOfTheYear(int year) {
-        return 0;         // dummy implementation
+        int count = 0; 
+        for(Sell sell : sells) {
+            if(sell.getDate().getYear() == year) {
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
@@ -133,7 +142,22 @@ public class Company {
      * @return The name of the seller of the year.
      */
     public String findSellerOfTheYear(int year) {
-        return null;         // dummy implementation
-    }
+        int maxSells = 0;
+        String sellerOfTheYear = null;
 
+        for(User seller : sellers) {
+            int sellsOfSeller = 0;
+            for(Sell sell : sells) {
+                if (sell.getSeller().equals(seller) && sell.getDate().getYear() == year) {
+                    sellsOfSeller++;
+                }
+            }
+            if(sellsOfSeller > maxSells) {
+                maxSells = sellsOfSeller;
+                sellerOfTheYear = seller.getName();
+            }
+        }
+        return sellerOfTheYear;
+    }
 }
+
